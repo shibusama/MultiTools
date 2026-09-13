@@ -1,0 +1,15 @@
+beautifulsoup4>=4.12
+lxml
+numpy
+pillow
+requests
+edge-tts
+pypdf
+playwright
+
+# optional: scanned-PDF OCR
+# pypdfium2
+# rapidocr-onnxruntime
+
+# optional: scripts/transcribe.py (one-off faster-whisper path)
+# faster-whisper
