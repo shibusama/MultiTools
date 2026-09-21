@@ -14,10 +14,11 @@
 
 先试文字层直取，抽不出字再走扫描 OCR。
 
-日常让 agent 走 skill `epub-to-txt`：
+日常让 agent 走 skill：
 
 ```bash
 python skills/epub-to-txt/scripts/epub_to_txt.py <书.epub> -o txt --name 书名
+python skills/pdf-to-txt/scripts/pdf_to_txt.py <书.pdf> -o txt --name 书名 --probe
 ```
 
 扫描件：

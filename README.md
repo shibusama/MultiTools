@@ -13,6 +13,7 @@ skills/                          # agent 技能
   douyin-collect/
   shortform-rhythm/
   epub-to-txt/
+  pdf-to-txt/
 scripts/                         # 批处理、节奏分析、成片脚本
 解析大全/
   README.md

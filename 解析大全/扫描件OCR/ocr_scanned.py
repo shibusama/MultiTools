@@ -114,10 +114,12 @@ def main():
     ap.add_argument("--out", type=Path, default=WS / "txt" / "ocr_output.txt")
     ap.add_argument("--cache", type=Path, default=WS / ".work" / "ocr_cache" / "pages.jsonl")
     ap.add_argument("--pages", type=int, default=0, help="只跑前 N 页（试跑）")
+    ap.add_argument("--scale", type=float, default=SCALE, help="渲染倍率（3≈216dpi，4≈288dpi）")
     ap.add_argument("--assemble-only", action="store_true")
     ap.add_argument("--assemble-limit", type=int, default=0, help="拼装时只取前 N 页（调试用）")
     ap.add_argument("--no-write", action="store_true", help="拼装后只打印样本，不写 txt")
     args = ap.parse_args()
+    scale = args.scale
 
     pdf_path = args.pdf
     cache_path = args.cache
@@ -137,24 +139,28 @@ def main():
         ocr = get_ocr()
         limit = min(total, args.pages) if args.pages else total
         t0 = time.time()
+        processed = 0
+        print(f"OCR {limit} 页 scale={scale} cache={cache_path}", flush=True)
         with cache_path.open("a", encoding="utf-8") as fh:
             for i in range(limit):
                 if i in done:
                     continue
                 page = doc[i]
-                img = page.render(scale=SCALE).to_pil().convert("RGB")
+                img = page.render(scale=scale).to_pil().convert("RGB")
                 arr = np.asarray(img)[:, :, ::-1]  # RapidOCR 走 BGR
                 res, _ = ocr(arr)
                 lines = boxes_to_lines(res or [])
                 done[i] = lines
+                processed += 1
                 fh.write(json.dumps({"pno": i, "lines": lines}, ensure_ascii=False) + "\n")
                 fh.flush()
-                if (i + 1) % 10 == 0 or i + 1 == limit:
+                if processed % 10 == 0 or i + 1 == limit:
                     el = time.time() - t0
-                    sp = el / max(1, len(done))
+                    sp = el / max(1, processed)
+                    remain = limit - len([p for p in range(limit) if p in done])
                     print(
                         f"  {i+1}/{limit} 页 | 已用 {el/60:.1f} 分钟 | 约 {sp:.2f} 秒/页 | "
-                        f"预计剩余 {(limit-len(done))*sp/60:.0f} 分钟",
+                        f"预计剩余 {remain*sp/60:.0f} 分钟",
                         flush=True,
                     )
 
