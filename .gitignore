@@ -28,7 +28,6 @@ browser_profile/
 models/
 tools/archives/
 tools/faster-whisper-xxl/
-解析大全/扫描件OCR/engine/
 __pycache__/
 *.py[cod]
 .venv/
@@ -60,13 +59,13 @@ _tmp*
 主义主义_BV列表.txt
 主义主义_视频清单.csv
 未明子_全部视频清单.csv
-解析大全/txt/
-解析大全/inbox/
-解析大全/.work/
-解析大全/采集/douyin/data/
-解析大全/采集/douyin/transcripts/
-解析大全/采集/douyin/audio/
-解析大全/采集/douyin/browser_profile/
+ebook-txt/txt/
+ebook-txt/inbox/
+ebook-txt/.work/
+skills/douyin-collect/data/
+skills/douyin-collect/transcripts/
+skills/douyin-collect/audio/
+skills/douyin-collect/browser_profile/
 bili_search.json
 dy_*.html
 

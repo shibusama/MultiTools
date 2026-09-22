@@ -4,7 +4,7 @@ import os
 import re
 from collections import Counter
 
-p = r"D:\C_Relocated\Users\13191\MultiTools\解析大全\采集\douyin\data\douyin_samples.json"
+p = r"D:\C_Relocated\Users\13191\MultiTools\skills\douyin-collect\data\douyin_samples.json"
 data = json.load(open(p, encoding="utf-8"))
 
 items = data if isinstance(data, list) else data.get("items", data.get("data", []))

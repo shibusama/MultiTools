@@ -18,7 +18,7 @@ python skills/video-to-transcript/scripts/transcribe.py <链接 或 视频文件
 - 输出 `<输出目录>/<名字>.txt`：抖音链接用 `aweme_id` 命名，本地文件用文件名；开头两行是来源与日期
 - 批量就一次传多个
 
-转写引擎是 `agent-reach transcribe`（Groq whisper-large-v3），视频一律先压成 **16k 单声道 mp3** 以过 API 体积限制。Cookie 默认用本仓库 `解析大全/采集/douyin/data/douyin_cookies.txt`。
+转写引擎是 `agent-reach transcribe`（Groq whisper-large-v3），视频一律先压成 **16k 单声道 mp3** 以过 API 体积限制。Cookie 默认用本仓库 `skills/douyin-collect/data/douyin_cookies.txt`。
 
 ## 依赖（本机已就位）
 
@@ -35,7 +35,7 @@ python skills/video-to-transcript/scripts/transcribe.py <链接 或 视频文件
 yt-dlp 拿不到视频时（`下载失败` 提示），先用采集工具刷新 cookie jar（会开有头浏览器）：
 
 ```bash
-python "解析大全/采集/douyin/douyin.py" video <链接> --headed
+python "skills/douyin-collect/scripts/douyin.py" video <链接> --headed
 ```
 
 抖音**不能无头**，headless 必触发验证码。

@@ -8,10 +8,10 @@ description: Use when collecting Douyin data in this repo — 扫码登录抖音
 拦网页接口拿文案/列表/cookie，**默认不下载视频**。脚本：
 
 ```bash
-python 解析大全/采集/douyin/douyin.py <子命令>
+python skills/douyin-collect/scripts/douyin.py <子命令>
 ```
 
-路径都相对该文件，产物在 `解析大全/采集/douyin/data/`，登录态在同级 `browser_profile/`。不要动 `browser_profile` 当普通文件夹删。
+路径都相对该文件，产物在 `skills/douyin-collect/data/`，登录态在同级 `browser_profile/`。不要动 `browser_profile` 当普通文件夹删。
 
 ## Hard rules
 
@@ -25,7 +25,7 @@ python 解析大全/采集/douyin/douyin.py <子命令>
 
 | 要做的事 | 命令 |
 |---|---|
-| 扫码登录（只需一次） | `python 解析大全/采集/douyin/douyin.py login` |
+| 扫码登录（只需一次） | `python skills/douyin-collect/scripts/douyin.py login` |
 | 看登录态和已有 json | `... status` |
 | 枚举某账号全部作品 | `... posts <sec_uid>` |
 | 按关键词采文案（不下载） | `... sample 历史 --mins 3 --headed` |

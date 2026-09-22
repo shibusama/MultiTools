@@ -7,14 +7,17 @@ description: >-
 
 # PDF → txt
 
-`解析大全/文字层直取/convert_to_txt.py` 是齐泽克四本书的一次性脚本（SHA 写死）。**不要直接跑它。** 用本技能脚本：
+自包含单文件脚本，**没有外部依赖脚本**：
 
 ```bash
 python skills/pdf-to-txt/scripts/pdf_to_txt.py <书.pdf> [-o 输出目录] [--name 书名] [--probe]
-python skills/pdf-to-txt/scripts/pdf_to_txt.py <书.pdf> -o 解析大全/txt --name 书名 --ocr --scale 4
+python skills/pdf-to-txt/scripts/pdf_to_txt.py <书.pdf> -o ebook-txt/txt --name 书名 --ocr --scale 4
 ```
 
-默认输出 `解析大全/txt/<书名>.txt`（gitignore）。OCR 缓存按书名分文件，可续跑。
+默认输出 `ebook-txt/txt/<书名>.txt`（gitignore）。OCR 缓存按书名分文件，可续跑。
+
+OCR 相关的附加开关：`--pages N`（试跑前 N 页看样本）、`--assemble-only`（只拼装已有缓存）、
+`--no-write`（只统计不写盘）、`--cache`（指定缓存文件）。
 
 ## 流程
 
@@ -30,7 +33,7 @@ EPUB → `epub-to-txt`。
 
 | 错法 | 正法 |
 |---|---|
-| `python 解析大全/文字层直取/convert_to_txt.py` | 本技能脚本，传入具体 pdf 路径 |
+| 用旧的 `解析大全/文字层直取/convert_to_txt.py` | 已删除；本技能脚本是唯一入口 |
 | `extract_text(extraction_mode="layout")` 抽扫描件 | 普通 `extract_text()`，或 `--ocr` |
 | RapidOCR `--scale 3` 当默认 | `--scale 4` |
 | 把 OCR 行间空行都当漏行，拿文字层整段回填 | 空行多半是段距；只补「缺了一整行」的缺口 |

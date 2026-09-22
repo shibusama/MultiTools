@@ -45,8 +45,8 @@ def resolve_exe(env_name: str, exe: str) -> str:
 ROOT = repo_root(Path(__file__).resolve())
 AGENT_REACH = resolve_exe("AGENT_REACH", "agent-reach")
 YTDLP = resolve_exe("YTDLP", "yt-dlp")
-DEFAULT_JAR = ROOT / "解析大全" / "采集" / "douyin" / "data" / "douyin_cookies.txt"
-DOUYIN_PY = ROOT / "解析大全" / "采集" / "douyin" / "douyin.py"
+DEFAULT_JAR = ROOT / "skills" / "douyin-collect" / "data" / "douyin_cookies.txt"
+DOUYIN_PY = ROOT / "skills" / "douyin-collect" / "scripts" / "douyin.py"
 BILI_RE = re.compile(r"(?:bilibili\.com|b23\.tv|bili2233\.cn|/BV1|/BV)", re.I)
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
