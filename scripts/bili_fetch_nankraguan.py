@@ -41,7 +41,7 @@ while pn <= 6:
     pn += 1
     time.sleep(2.5)
 
-out = Path(__file__).resolve().parents[1] / "outputs" / "nankraguan_bili_videos.json"
+out = Path(__file__).resolve().parents[1] / "outputs" / "reports" / "nankraguan_bili_videos.json"
 out.write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
 print(f"total {len(rows)} videos -> {out}")
 for v in rows[:40]:

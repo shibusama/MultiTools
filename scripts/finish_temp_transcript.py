@@ -8,12 +8,12 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT_ROOT = ROOT / "transcripts" / "主义主义"
+OUT_ROOT = ROOT / "projects" / "zhuyizhuyi" / "raw"
 TEMP_OUT = ROOT / "outputs" / "_batch_tmp"
 PROGRESS = OUT_ROOT / "_progress.log"
 SUCCESS = OUT_ROOT / "_success.log"
-CSV_PATH = ROOT / "主义主义_视频清单.csv"
-BV_LIST = ROOT / "主义主义_BV列表.txt"
+CSV_PATH = ROOT / "projects" / "zhuyizhuyi" / "index" / "主义主义_视频清单.csv"
+BV_LIST = ROOT / "projects" / "zhuyizhuyi" / "index" / "主义主义_BV列表.txt"
 
 TIMESTAMP_LINE = re.compile(
     r"^\[\d{1,2}:\d{2}(?::\d{2})?(?:\.\d+)?\s*-->\s*\d{1,2}:\d{2}(?::\d{2})?(?:\.\d+)?\]\s*"

@@ -9,14 +9,14 @@ description: Use when quantitatively breaking down a short video's pacing — �
 
 ## 步骤
 
-1. 把片子放进 `analysis_videos/`，扩展名 `.mp4`。不要放进 `_tmp.wav`。
+1. 把片子放进 `data/video/`，扩展名 `.mp4`。不要放进 `_tmp.wav`。
 2. 从仓库根跑：
 
 ```bash
 python scripts/analyze_benchmarks.py
 ```
 
-3. 读 `outputs/analysis_report.json`，关键帧在 `outputs/analysis_frames/{id}_{nn}_{t}s.jpg`。
+3. 读 `outputs/reports/analysis_report.json`，关键帧在 `outputs/frames/{id}_{nn}_{t}s.jpg`。
 
 ## 报告字段
 

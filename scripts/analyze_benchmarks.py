@@ -5,8 +5,8 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-VIDS = ROOT / "analysis_videos"
-FRAMES = ROOT / "outputs" / "analysis_frames"
+VIDS = ROOT / "data" / "video"
+FRAMES = ROOT / "outputs" / "frames"
 FRAMES.mkdir(parents=True, exist_ok=True)
 
 SR = 22050
@@ -77,6 +77,6 @@ for mp4 in sorted(p for p in VIDS.glob("*.mp4") if not p.name.startswith("_")):
     }
     print(f"{bvid}: {dur:.1f}s shots={shots} avg={avg:.2f}s onsets={len(ons)}")
 
-(ROOT / "outputs" / "analysis_report.json").write_text(
+(ROOT / "outputs" / "reports" / "analysis_report.json").write_text(
     json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-print("saved outputs/analysis_report.json")
+print("saved outputs/reports/analysis_report.json")

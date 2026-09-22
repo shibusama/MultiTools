@@ -10,10 +10,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BV_LIST = ROOT / "主义主义_BV列表.txt"
-CSV_PATH = ROOT / "主义主义_视频清单.csv"
-AUDIO_ROOT = ROOT / "audio"
-OUT_ROOT = ROOT / "transcripts" / "主义主义"
+BV_LIST = ROOT / "projects" / "zhuyizhuyi" / "index" / "主义主义_BV列表.txt"
+CSV_PATH = ROOT / "projects" / "zhuyizhuyi" / "index" / "主义主义_视频清单.csv"
+AUDIO_ROOT = ROOT / "data" / "audio"
+OUT_ROOT = ROOT / "projects" / "zhuyizhuyi" / "raw"
 XXL_DIR = ROOT / "tools/archives/Faster-Whisper-XXL_r245.4_windows/Faster-Whisper-XXL"
 XXL = XXL_DIR / "faster-whisper-xxl.exe"
 MODEL_DIR = ROOT / "models"

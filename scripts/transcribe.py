@@ -6,9 +6,9 @@ from faster_whisper import WhisperModel
 
 ROOT = Path(__file__).resolve().parents[1]
 BVID = "BV1YZ4y1F7ve"
-AUDIO = ROOT / "audio" / BVID / "source.wav"
+AUDIO = ROOT / "data" / "audio" / BVID / "source.wav"
 MODEL_DIR = ROOT / "models" / "large-v3"
-OUT_DIR = ROOT / "outputs"
+OUT_DIR = ROOT / "outputs" / "reports"
 
 
 def fmt(ts: float) -> str:

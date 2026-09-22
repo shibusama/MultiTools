@@ -41,11 +41,11 @@ description: >
 
 1. 目标：一个 BV 或 `https://www.bilibili.com/video/BVxxxx`。
 2. 若下载失败：`bili status`，未登录则 `bili login`。
-3. 下载（已有 `audio/{BV}/{BV}.wav` 且 >100KB 则跳过）：
+3. 下载（已有 `data/audio/{BV}/{BV}.wav` 且 >100KB 则跳过）：
 
 ```powershell
-bili audio BVxxxx --no-split -o audio\BVxxxx
-ffmpeg -y -i audio\BVxxxx\*.m4a -vn -ac 1 -ar 16000 -c:a pcm_s16le audio\BVxxxx\BVxxxx.wav
+bili audio BVxxxx --no-split -o data\audio\BVxxxx
+ffmpeg -y -i data\audio\BVxxxx\*.m4a -vn -ac 1 -ar 16000 -c:a pcm_s16le data\audio\BVxxxx\BVxxxx.wav
 ```
 
 4. 转写。在 XXL 目录设 cwd，`--model_dir` 指向仓库 `models/`（不是 `models\large-v3`）：
@@ -53,14 +53,14 @@ ffmpeg -y -i audio\BVxxxx\*.m4a -vn -ac 1 -ar 16000 -c:a pcm_s16le audio\BVxxxx\
 ```powershell
 $root = (Get-Location).Path
 $xxl = Join-Path $root "tools\archives\Faster-Whisper-XXL_r245.4_windows\Faster-Whisper-XXL"
-& "$xxl\faster-whisper-xxl.exe" (Join-Path $root "audio\BVxxxx\BVxxxx.wav") `
+& "$xxl\faster-whisper-xxl.exe" (Join-Path $root "data\audio\BVxxxx\BVxxxx.wav") `
   --model large-v3 --model_dir (Join-Path $root "models") `
   --language zh --output_dir (Join-Path $root "outputs\_batch_tmp") `
   --output_format txt --without_timestamps True `
   --device cuda --compute_type float16 --vad_filter True
 ```
 
-5. 把 `outputs/_batch_tmp/{BVxxxx|source}.txt` **一律去时间戳**后写入 `transcripts/<up>/{BV}.txt`。`--without_timestamps True` 仍可能写出轴。XXL 有时写完文件仍非 0 退出——文件在就当成功。
+5. 把 `outputs/_batch_tmp/{BVxxxx|source}.txt` **一律去时间戳**后写入 `projects/zhuyizhuyi/raw/{BV}.txt`。`--without_timestamps True` 仍可能写出轴。XXL 有时写完文件仍非 0 退出——文件在就当成功。
 6. 默认产物是**无时间轴纯 txt**。用户要带轴 `.md`/`.json` 时再改 `--without_timestamps False` 并换 `--output_format`。
 
 去时间戳（必须覆盖 `HH:MM:SS`，不能只写 `mm:ss`）：
@@ -73,19 +73,19 @@ $xxl = Join-Path $root "tools\archives\Faster-Whisper-XXL_r245.4_windows\Faster-
 
 ## YouTube 补档
 
-B 站搜不到、用户丢了 YouTube 链接时走这条。产物：`audio/YT_{id}/{id}.wav` → `transcripts/主义主义/YT_{id}.txt`。
+B 站搜不到、用户丢了 YouTube 链接时走这条。产物：`data/audio/YT_{id}/{id}.wav` → `projects/zhuyizhuyi/raw/YT_{id}.txt`。
 
 默认客户端会 403。按序试，拿到 >100KB 的 m4a/mp4 即停：
 
 ```powershell
 # 1) web
-yt-dlp -f "bestaudio/best" --extractor-args "youtube:player_client=web" -x --audio-format m4a --no-playlist -o "audio\YT_%(id)s\%(id)s.%(ext)s" "URL"
+yt-dlp -f "bestaudio/best" --extractor-args "youtube:player_client=web" -x --audio-format m4a --no-playlist -o "data\audio\YT_%(id)s\%(id)s.%(ext)s" "URL"
 
 # 2) 403 或 Only images are available → android + 18
-yt-dlp -f 18 --extractor-args "youtube:player_client=android" -x --audio-format m4a --no-playlist -o "audio\YT_%(id)s\%(id)s.%(ext)s" "URL"
+yt-dlp -f 18 --extractor-args "youtube:player_client=android" -x --audio-format m4a --no-playlist -o "data\audio\YT_%(id)s\%(id)s.%(ext)s" "URL"
 
 # 3) 仍失败 → tv_embedded 音轨
-yt-dlp -f 140 --extractor-args "youtube:player_client=tv_embedded" -x --audio-format m4a --no-playlist -o "audio\YT_%(id)s\%(id)s.%(ext)s" "URL"
+yt-dlp -f 140 --extractor-args "youtube:player_client=tv_embedded" -x --audio-format m4a --no-playlist -o "data\audio\YT_%(id)s\%(id)s.%(ext)s" "URL"
 ```
 
 然后同一套 `ffmpeg` 16k mono wav + XXL。不要用默认（android vr）客户端。
@@ -96,25 +96,25 @@ yt-dlp -f 140 --extractor-args "youtube:player_client=tv_embedded" -x --audio-fo
 
 | 编号 | 正课 | 稿 |
 |---|---|---|
-| 1-3 | 复习课 `BV1gi4y1T7yg`《十六种庸俗的唯我论》 | `transcripts/主义主义/BV1gi4y1T7yg.txt` |
-| 1-2-1-1 | YouTube `yS4-s79G70w` 自然神论 | `transcripts/主义主义/YT_yS4-s79G70w.txt` |
-| 1-2-1-2 | YouTube `IL5E7Oh0osw` 神义论 | `transcripts/主义主义/YT_IL5E7Oh0osw.txt` |
-| 1-4-4-3 | `BV1aX4y1V7nF`《四重竞争主义》（标题无编号） | `transcripts/主义主义/BV1aX4y1V7nF.txt` |
-| 2-3-3-3 | `BV1SA41137C8`《逻辑原子主义》（标题无编号） | `transcripts/主义主义/BV1SA41137C8.txt` |
+| 1-3 | 复习课 `BV1gi4y1T7yg`《十六种庸俗的唯我论》 | `projects/zhuyizhuyi/raw/BV1gi4y1T7yg.txt` |
+| 1-2-1-1 | YouTube `yS4-s79G70w` 自然神论 | `projects/zhuyizhuyi/raw/YT_yS4-s79G70w.txt` |
+| 1-2-1-2 | YouTube `IL5E7Oh0osw` 神义论 | `projects/zhuyizhuyi/raw/YT_IL5E7Oh0osw.txt` |
+| 1-4-4-3 | `BV1aX4y1V7nF`《四重竞争主义》（标题无编号） | `projects/zhuyizhuyi/raw/BV1aX4y1V7nF.txt` |
+| 2-3-3-3 | `BV1SA41137C8`《逻辑原子主义》（标题无编号） | `projects/zhuyizhuyi/raw/BV1SA41137C8.txt` |
 
-映射表：`transcripts/主义主义/_BV标题.txt`。
+映射表：`projects/zhuyizhuyi/raw/_BV标题.txt`。
 
 ## 批量
 
-主义主义清单已在仓库：`主义主义_BV列表.txt` + `主义主义_视频清单.csv` → `transcripts/主义主义/`。
+主义主义清单已在仓库：`projects/zhuyizhuyi/index/主义主义_BV列表.txt` + `主义主义_视频清单.csv` → `projects/zhuyizhuyi/raw/`。
 
 ```powershell
 python scripts/batch_transcribe_zhuyizhuyi.py
 ```
 
-已有 txt 且 >200 字节会 skip。进度：`transcripts/主义主义/_progress.log`、`_success.log`。
+已有 txt 且 >200 字节会 skip。进度：`projects/zhuyizhuyi/raw/_progress.log`、`_success.log`。
 
-其他 UP：同一套命令，换 `audio/`、`transcripts/<up>/`、BV 列表。不要再写一份 fork 脚本。
+其他 UP：同一套命令，换 `data/audio/`、`projects/zhuyizhuyi/raw/`、BV 列表。不要再写一份 fork 脚本。
 
 XXL 写出了临时文件但没晋级：
 
