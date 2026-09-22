@@ -27,10 +27,18 @@ requirements.txt
 
 ## 不收录（已被 .gitignore）
 
-- 登录态：`*cookie*`、`browser_profile/`
-- 大文件：`models/`、`tools/archives/`、`chiikawa动画制作/renders/`
-- 媒体：`audio/`、`analysis_videos/`、`*.mp4` / `*.wav` / `*.mp3`
-- 第三方内容：讲座转写、电子书 txt、抖音采样 json
+`.gitignore` 按两级组织：**全局规则**（跨项目）+ **按项目**（主义主义 / chiikawa / ebook-txt / 抖音采集）。
+大文件与外部工具一律留在本机。
+
+| 类别 | 内容 |
+|---|---|
+| 登录态 | `*cookie*`、`browser_profile/` |
+| 大文件 / 工具 | `models/`（约 2.9 GB）、`tools/archives/`、`tools/faster-whisper-xxl/`（约 4.5 GB） |
+| 媒体源文件 | `*.mp4` / `*.wav` / `*.mp3` 等，以及 `audio/`、`analysis_videos/` |
+| 输出产物 | `outputs/`、`transcripts/`、`txt/`、`ebook-txt/txt/`、`chiikawa动画制作/renders/` |
+| 第三方内容 | 讲座转写（`主义主义_*`）、电子书 txt、抖音采样 json |
+
+> 例外：`chiikawa动画制作/models/*.blend` 仅 5.4 MB，**入库**（已被 `!` 规则从 `models/` 中救回）。
 
 ## 本机依赖（不进仓库）
 
