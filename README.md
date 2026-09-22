@@ -36,7 +36,7 @@ outputs/                         # 跨项目产物
 ebook-txt/                       # 电子书抽取输出（txt/ .work/）
 
 models/  tools/                  # 模型与外部工具（本机，不入库）
-AGENTS.md  README.md  list_voices.ps1  requirements.txt
+AGENTS.md  README.md  requirements.txt
 ```
 
 ## 不收录（已被 .gitignore）

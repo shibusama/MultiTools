@@ -12,7 +12,7 @@ description: >
 
 本机 GPU 转写 B 站长课。下载只用 `bili audio`，ASR 只用本仓库的 Faster-Whisper-XXL。命令默认在**仓库根**执行。
 
-**REQUIRED:** 知识卡片/总结图 → `video-knowledge-card`。抖音短视频或明确要云端快转 → 本仓库 `video-to-transcript`。
+**REQUIRED:** 抖音短视频或明确要云端快转 → 本仓库 `video-to-transcript`。
 
 ## Hard rules
 
@@ -130,7 +130,6 @@ python scripts/finish_temp_transcript.py BVxxxx
 |---|---|
 | B站 / BV / 本地 / XXL / 不要云端 / 批量讲座 / YouTube 补档 | 本技能 |
 | 抖音链接、本地 mp4 快转、Groq | 本仓库 `video-to-transcript` |
-| 知识卡片、总结图、竖版海报 | `video-knowledge-card` |
 
 ## Common mistakes
 

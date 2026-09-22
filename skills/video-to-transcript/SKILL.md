@@ -5,7 +5,7 @@ description: Use when turning a Douyin link or a local mp4/m4a/mp3 into a txt tr
 
 # 视频 → 文字稿
 
-**先分流。** B 站 / BV / Faster-Whisper-XXL / 本地 GPU / 批量讲座 / 不要走云端 → **REQUIRED SUB-SKILL:** `bili-local-transcribe`。本技能只做抖音（yt-dlp）和本地文件的 Groq 快转。知识卡片 → `video-knowledge-card`。
+**先分流。** B 站 / BV / Faster-Whisper-XXL / 本地 GPU / 批量讲座 / 不要走云端 → **REQUIRED SUB-SKILL:** `bili-local-transcribe`。本技能只做抖音（yt-dlp）和本地文件的 Groq 快转。
 
 从仓库根：
 

@@ -37,9 +37,7 @@ python scripts/analyze_benchmarks.py
 |---|---|
 | 对标 / 切点 / 节奏数字 | 本技能 |
 | 转成文字稿 | 抖音 → `video-to-transcript`；B 站 → `bili-local-transcribe` |
-| 知识卡片 | `video-knowledge-card` |
 
 ## Common mistakes
 
-- 用 Hub `video-deconstruct` 代替本脚本：那条是语义成片，不是这些数字。
 - 只截一张封面当拆解。
