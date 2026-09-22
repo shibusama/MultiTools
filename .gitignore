@@ -91,11 +91,8 @@ tools/faster-whisper-xxl/
 # --------------------------------------------------------------------------
 # 5. projects/ 各项目
 # --------------------------------------------------------------------------
-# --- 主义主义：讲座转写，第三方内容，不入库 ---
-projects/zhuyizhuyi/
-
-# --- douyin-transcripts：采集转写稿 ---
-projects/douyin-transcripts/
+# --- 主义主义：讲座转写稿入库（raw/ cleaned/ filtered/ index/） ---
+# --- douyin-transcripts：自己的视频转写稿，入库 ---
 
 # --- chiikawa：帧序列可重渲，采集 json 含会过期的签名直链 ---
 projects/chiikawa/renders/
