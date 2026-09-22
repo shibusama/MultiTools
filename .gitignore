@@ -70,6 +70,12 @@ _tmp*
 bili_search.json
 dy_*.html
 
+# --- 3D 渲染产物 / blender 自动备份 ---
+chiikawa动画制作/renders/
+chiikawa动画制作/douyin_tutorials.json
+!chiikawa动画制作/models/
+*.blend1
+
 # --- editor / OS ---
 .claude/
 .cursor/
